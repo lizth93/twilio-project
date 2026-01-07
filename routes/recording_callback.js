@@ -12,9 +12,6 @@ const pool = new Pool({
 const router = express.Router();
 router.post('/recording-callback', async (req, res) => {
     const { RecordingUrl, RecordingSid, CallSid } = req.body;
-    console.log('Grabación lista: ', RecordingUrl);
-    console.log('Recording SID:', RecordingSid);
-    console.log('Call SID:', CallSid);
     try {
         await pool.query(
             `INSERT INTO recordings (recording_sid, call_sid, recording_url)
@@ -27,8 +24,6 @@ router.post('/recording-callback', async (req, res) => {
         console.error('Error saving in DB:', error);
         res.status(500).send('DB error');
     }
-
-
 
 });
 
