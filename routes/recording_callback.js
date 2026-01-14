@@ -1,13 +1,14 @@
 const { Pool } = require('pg');
 const express = require('express');
 const { transcribirConGoogle } = require('./transcription_google');
+require('dotenv').config();
 
 const pool = new Pool({
-    user: 'postgres',
-    host: 'localhost',
-    database: 'twilio_db',
-    password: 'twilio-1234',
-    port: 5432,
+    user: process.env.DB_USER,
+    host: process.env.DB_HOST,
+    database: process.env.DB_NAME,
+    password: process.env.DB_PASSWORD,
+    port: process.env.DB_PORT,
 });
 
 const router = express.Router();
